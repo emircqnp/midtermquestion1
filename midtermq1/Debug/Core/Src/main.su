@@ -1,0 +1,8 @@
+../Core/Src/main.c:5:6:led_checker	40	static
+../Core/Src/main.c:31:6:delay	16	static
+../Core/Src/main.c:35:6:init_leds	4	static
+../Core/Src/main.c:38:6:turn_name_on	8	static
+../Core/Src/main.c:61:6:turn_surname_on	8	static
+../Core/Src/main.c:86:6:turn_name_off	4	static
+../Core/Src/main.c:104:6:turn_surname_off	4	static
+../Core/Src/main.c:123:6:main	16	static
