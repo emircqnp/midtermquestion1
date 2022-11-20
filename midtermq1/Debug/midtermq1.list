@@ -41,11 +41,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  18 .debug_line   00001a42  00000000  00000000  00022a1f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000bb5a1  00000000  00000000  00024461  2**0
+ 19 .debug_str    000bb5e0  00000000  00000000  00024461  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  000dfa02  2**0
+ 20 .comment      00000050  00000000  00000000  000dfa41  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00000618  00000000  00000000  000dfa54  2**2
+ 21 .debug_frame  00000618  00000000  00000000  000dfa94  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -82,7 +82,7 @@ Disassembly of section .text:
 #define RCCAHB1EN *((unsigned volatile int *) 0x40023830)
 #define GPIODMOD *((unsigned volatile int *) 0x40020c00)
 #define gpiodODR *((unsigned volatile int *) 0x40020c14)
-unsigned int bcountname,bcoutsurname,name_led,surname_led;
+unsigned int bcountname,bcountsurname,name_led,surname_led;
 void led_checker(){
  80001c8:	b480      	push	{r7}
  80001ca:	b089      	sub	sp, #36	; 0x24
@@ -93,10 +93,10 @@ void led_checker(){
 	int sum_surname=0;
  80001d2:	2300      	movs	r3, #0
  80001d4:	61bb      	str	r3, [r7, #24]
-	int i=0;
+	int i=0;//temp variable for bcountname
  80001d6:	2300      	movs	r3, #0
  80001d8:	617b      	str	r3, [r7, #20]
-	int j=0;
+	int j=0;//temp variable for bcountsurname
  80001da:	2300      	movs	r3, #0
  80001dc:	613b      	str	r3, [r7, #16]
 	char name[]="EMIRCAN"; // Write your name inside " "
@@ -178,7 +178,7 @@ void led_checker(){
  8000266:	d1ee      	bne.n	8000246 <led_checker+0x7e>
 		}
 
-		bcoutsurname=j;// Led checker for your surname
+		bcountsurname=j;// Led checker for your surname
  8000268:	693b      	ldr	r3, [r7, #16]
  800026a:	4a0d      	ldr	r2, [pc, #52]	; (80002a0 <led_checker+0xd8>)
  800026c:	6013      	str	r3, [r2, #0]
@@ -582,8 +582,8 @@ for (i=0;i!=bcountname;i++){
  80004fa:	681b      	ldr	r3, [r3, #0]
  80004fc:	429a      	cmp	r2, r3
  80004fe:	d1ef      	bne.n	80004e0 <main+0x10>
-}
-for (i=0;i<bcoutsurname;i++){//i!=x????????
+}//name led blink for end
+for (i=0;i<bcountsurname;i++){
  8000500:	2300      	movs	r3, #0
  8000502:	607b      	str	r3, [r7, #4]
  8000504:	e00a      	b.n	800051c <main+0x4c>
@@ -595,7 +595,7 @@ for (i=0;i<bcoutsurname;i++){//i!=x????????
  800050e:	f7ff ffb1 	bl	8000474 <turn_surname_off>
 	delay();
  8000512:	f7ff fec9 	bl	80002a8 <delay>
-for (i=0;i<bcoutsurname;i++){//i!=x????????
+for (i=0;i<bcountsurname;i++){
  8000516:	687b      	ldr	r3, [r7, #4]
  8000518:	3301      	adds	r3, #1
  800051a:	607b      	str	r3, [r7, #4]
@@ -604,7 +604,7 @@ for (i=0;i<bcoutsurname;i++){//i!=x????????
  8000520:	681b      	ldr	r3, [r3, #0]
  8000522:	429a      	cmp	r2, r3
  8000524:	d3ef      	bcc.n	8000506 <main+0x36>
-}
+}// surname led blink for end
 }
  8000526:	bf00      	nop
  8000528:	bf00      	nop
@@ -615,185 +615,69 @@ for (i=0;i<bcoutsurname;i++){//i!=x????????
  8000534:	20000024 	.word	0x20000024
 
 08000538 <NMI_Handler>:
-/******************************************************************************/
-/**
-  * @brief This function handles Non maskable interrupt.
-  */
-void NMI_Handler(void)
-{
  8000538:	b480      	push	{r7}
  800053a:	af00      	add	r7, sp, #0
-  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
-
-  /* USER CODE END NonMaskableInt_IRQn 0 */
-  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-  while (1)
  800053c:	e7fe      	b.n	800053c <NMI_Handler+0x4>
 
 0800053e <HardFault_Handler>:
-
-/**
-  * @brief This function handles Hard fault interrupt.
-  */
-void HardFault_Handler(void)
-{
  800053e:	b480      	push	{r7}
  8000540:	af00      	add	r7, sp, #0
-  /* USER CODE BEGIN HardFault_IRQn 0 */
-
-  /* USER CODE END HardFault_IRQn 0 */
-  while (1)
  8000542:	e7fe      	b.n	8000542 <HardFault_Handler+0x4>
 
 08000544 <MemManage_Handler>:
-
-/**
-  * @brief This function handles Memory management fault.
-  */
-void MemManage_Handler(void)
-{
  8000544:	b480      	push	{r7}
  8000546:	af00      	add	r7, sp, #0
-  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
-
-  /* USER CODE END MemoryManagement_IRQn 0 */
-  while (1)
  8000548:	e7fe      	b.n	8000548 <MemManage_Handler+0x4>
 
 0800054a <BusFault_Handler>:
-
-/**
-  * @brief This function handles Pre-fetch fault, memory access fault.
-  */
-void BusFault_Handler(void)
-{
  800054a:	b480      	push	{r7}
  800054c:	af00      	add	r7, sp, #0
-  /* USER CODE BEGIN BusFault_IRQn 0 */
-
-  /* USER CODE END BusFault_IRQn 0 */
-  while (1)
  800054e:	e7fe      	b.n	800054e <BusFault_Handler+0x4>
 
 08000550 <UsageFault_Handler>:
-
-/**
-  * @brief This function handles Undefined instruction or illegal state.
-  */
-void UsageFault_Handler(void)
-{
  8000550:	b480      	push	{r7}
  8000552:	af00      	add	r7, sp, #0
-  /* USER CODE BEGIN UsageFault_IRQn 0 */
-
-  /* USER CODE END UsageFault_IRQn 0 */
-  while (1)
  8000554:	e7fe      	b.n	8000554 <UsageFault_Handler+0x4>
 
 08000556 <SVC_Handler>:
-
-/**
-  * @brief This function handles System service call via SWI instruction.
-  */
-void SVC_Handler(void)
-{
  8000556:	b480      	push	{r7}
  8000558:	af00      	add	r7, sp, #0
-
-  /* USER CODE END SVCall_IRQn 0 */
-  /* USER CODE BEGIN SVCall_IRQn 1 */
-
-  /* USER CODE END SVCall_IRQn 1 */
-}
  800055a:	bf00      	nop
  800055c:	46bd      	mov	sp, r7
  800055e:	f85d 7b04 	ldr.w	r7, [sp], #4
  8000562:	4770      	bx	lr
 
 08000564 <DebugMon_Handler>:
-
-/**
-  * @brief This function handles Debug monitor.
-  */
-void DebugMon_Handler(void)
-{
  8000564:	b480      	push	{r7}
  8000566:	af00      	add	r7, sp, #0
-
-  /* USER CODE END DebugMonitor_IRQn 0 */
-  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
-
-  /* USER CODE END DebugMonitor_IRQn 1 */
-}
  8000568:	bf00      	nop
  800056a:	46bd      	mov	sp, r7
  800056c:	f85d 7b04 	ldr.w	r7, [sp], #4
  8000570:	4770      	bx	lr
 
 08000572 <PendSV_Handler>:
-
-/**
-  * @brief This function handles Pendable request for system service.
-  */
-void PendSV_Handler(void)
-{
  8000572:	b480      	push	{r7}
  8000574:	af00      	add	r7, sp, #0
-
-  /* USER CODE END PendSV_IRQn 0 */
-  /* USER CODE BEGIN PendSV_IRQn 1 */
-
-  /* USER CODE END PendSV_IRQn 1 */
-}
  8000576:	bf00      	nop
  8000578:	46bd      	mov	sp, r7
  800057a:	f85d 7b04 	ldr.w	r7, [sp], #4
  800057e:	4770      	bx	lr
 
 08000580 <SysTick_Handler>:
-
-/**
-  * @brief This function handles System tick timer.
-  */
-void SysTick_Handler(void)
-{
  8000580:	b580      	push	{r7, lr}
  8000582:	af00      	add	r7, sp, #0
-  /* USER CODE BEGIN SysTick_IRQn 0 */
-
-  /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
  8000584:	f000 f83e 	bl	8000604 <HAL_IncTick>
-  /* USER CODE BEGIN SysTick_IRQn 1 */
-
-  /* USER CODE END SysTick_IRQn 1 */
-}
  8000588:	bf00      	nop
  800058a:	bd80      	pop	{r7, pc}
 
 0800058c <SystemInit>:
-  *         configuration.
-  * @param  None
-  * @retval None
-  */
-void SystemInit(void)
-{
  800058c:	b480      	push	{r7}
  800058e:	af00      	add	r7, sp, #0
-  /* FPU settings ------------------------------------------------------------*/
-  #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
-    SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
  8000590:	4b06      	ldr	r3, [pc, #24]	; (80005ac <SystemInit+0x20>)
  8000592:	f8d3 3088 	ldr.w	r3, [r3, #136]	; 0x88
  8000596:	4a05      	ldr	r2, [pc, #20]	; (80005ac <SystemInit+0x20>)
  8000598:	f443 0370 	orr.w	r3, r3, #15728640	; 0xf00000
  800059c:	f8c2 3088 	str.w	r3, [r2, #136]	; 0x88
-
-  /* Configure the Vector Table location -------------------------------------*/
-#if defined(USER_VECT_TAB_ADDRESS)
-  SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
-#endif /* USER_VECT_TAB_ADDRESS */
-}
  80005a0:	bf00      	nop
  80005a2:	46bd      	mov	sp, r7
  80005a4:	f85d 7b04 	ldr.w	r7, [sp], #4
@@ -802,116 +686,52 @@ void SystemInit(void)
  80005ac:	e000ed00 	.word	0xe000ed00
 
 080005b0 <Reset_Handler>:
-
-    .section  .text.Reset_Handler
-  .weak  Reset_Handler
-  .type  Reset_Handler, %function
-Reset_Handler:  
-  ldr   sp, =_estack     /* set stack pointer */
  80005b0:	f8df d034 	ldr.w	sp, [pc, #52]	; 80005e8 <LoopFillZerobss+0x12>
-
-/* Copy the data segment initializers from flash to SRAM */  
-  ldr r0, =_sdata
  80005b4:	480d      	ldr	r0, [pc, #52]	; (80005ec <LoopFillZerobss+0x16>)
-  ldr r1, =_edata
  80005b6:	490e      	ldr	r1, [pc, #56]	; (80005f0 <LoopFillZerobss+0x1a>)
-  ldr r2, =_sidata
  80005b8:	4a0e      	ldr	r2, [pc, #56]	; (80005f4 <LoopFillZerobss+0x1e>)
-  movs r3, #0
  80005ba:	2300      	movs	r3, #0
-  b LoopCopyDataInit
  80005bc:	e002      	b.n	80005c4 <LoopCopyDataInit>
 
 080005be <CopyDataInit>:
-
-CopyDataInit:
-  ldr r4, [r2, r3]
  80005be:	58d4      	ldr	r4, [r2, r3]
-  str r4, [r0, r3]
  80005c0:	50c4      	str	r4, [r0, r3]
-  adds r3, r3, #4
  80005c2:	3304      	adds	r3, #4
 
 080005c4 <LoopCopyDataInit>:
-
-LoopCopyDataInit:
-  adds r4, r0, r3
  80005c4:	18c4      	adds	r4, r0, r3
-  cmp r4, r1
  80005c6:	428c      	cmp	r4, r1
-  bcc CopyDataInit
  80005c8:	d3f9      	bcc.n	80005be <CopyDataInit>
-  
-/* Zero fill the bss segment. */
-  ldr r2, =_sbss
  80005ca:	4a0b      	ldr	r2, [pc, #44]	; (80005f8 <LoopFillZerobss+0x22>)
-  ldr r4, =_ebss
  80005cc:	4c0b      	ldr	r4, [pc, #44]	; (80005fc <LoopFillZerobss+0x26>)
-  movs r3, #0
  80005ce:	2300      	movs	r3, #0
-  b LoopFillZerobss
  80005d0:	e001      	b.n	80005d6 <LoopFillZerobss>
 
 080005d2 <FillZerobss>:
-
-FillZerobss:
-  str  r3, [r2]
  80005d2:	6013      	str	r3, [r2, #0]
-  adds r2, r2, #4
  80005d4:	3204      	adds	r2, #4
 
 080005d6 <LoopFillZerobss>:
-
-LoopFillZerobss:
-  cmp r2, r4
  80005d6:	42a2      	cmp	r2, r4
-  bcc FillZerobss
  80005d8:	d3fb      	bcc.n	80005d2 <FillZerobss>
-
-/* Call the clock system initialization function.*/
-  bl  SystemInit   
  80005da:	f7ff ffd7 	bl	800058c <SystemInit>
-/* Call static constructors */
-    bl __libc_init_array
  80005de:	f000 f825 	bl	800062c <__libc_init_array>
-/* Call the application's entry point.*/
-  bl  main
  80005e2:	f7ff ff75 	bl	80004d0 <main>
-  bx  lr    
  80005e6:	4770      	bx	lr
-  ldr   sp, =_estack     /* set stack pointer */
  80005e8:	20020000 	.word	0x20020000
-  ldr r0, =_sdata
  80005ec:	20000000 	.word	0x20000000
-  ldr r1, =_edata
  80005f0:	20000004 	.word	0x20000004
-  ldr r2, =_sidata
  80005f4:	080006a4 	.word	0x080006a4
-  ldr r2, =_sbss
  80005f8:	20000004 	.word	0x20000004
-  ldr r4, =_ebss
  80005fc:	20000034 	.word	0x20000034
 
 08000600 <ADC_IRQHandler>:
- * @retval None       
-*/
-    .section  .text.Default_Handler,"ax",%progbits
-Default_Handler:
-Infinite_Loop:
-  b  Infinite_Loop
  8000600:	e7fe      	b.n	8000600 <ADC_IRQHandler>
 	...
 
 08000604 <HAL_IncTick>:
- * @note This function is declared as __weak to be overwritten in case of other 
-  *      implementations in user file.
-  * @retval None
-  */
-__weak void HAL_IncTick(void)
-{
  8000604:	b480      	push	{r7}
  8000606:	af00      	add	r7, sp, #0
-  uwTick += uwTickFreq;
  8000608:	4b06      	ldr	r3, [pc, #24]	; (8000624 <HAL_IncTick+0x20>)
  800060a:	781b      	ldrb	r3, [r3, #0]
  800060c:	461a      	mov	r2, r3
@@ -920,7 +740,6 @@ __weak void HAL_IncTick(void)
  8000612:	4413      	add	r3, r2
  8000614:	4a04      	ldr	r2, [pc, #16]	; (8000628 <HAL_IncTick+0x24>)
  8000616:	6013      	str	r3, [r2, #0]
-}
  8000618:	bf00      	nop
  800061a:	46bd      	mov	sp, r7
  800061c:	f85d 7b04 	ldr.w	r7, [sp], #4

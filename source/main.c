@@ -1,12 +1,12 @@
 #define RCCAHB1EN *((unsigned volatile int *) 0x40023830)
 #define GPIODMOD *((unsigned volatile int *) 0x40020c00)
 #define gpiodODR *((unsigned volatile int *) 0x40020c14)
-unsigned int bcountname,bcoutsurname,name_led,surname_led;
+unsigned int bcountname,bcountsurname,name_led,surname_led;
 void led_checker(){
 	int sum_name=0;
 	int sum_surname=0;
-	int i=0;
-	int j=0;
+	int i=0;//temp variable for bcountname
+	int j=0;//temp variable for bcountsurname
 	char name[]="EMIRCAN"; // Write your name inside " "
 	char surname[]="COSKUN";// Write your surname " "
 
@@ -23,7 +23,7 @@ void led_checker(){
 			  j++;
 		}
 
-		bcoutsurname=j;// Led checker for your surname
+		bcountsurname=j;// Led checker for your surname
 
 	surname_led=sum_surname%4; //// Led checker for your surname
 
@@ -128,11 +128,11 @@ for (i=0;i!=bcountname;i++){
 	delay();
 	turn_name_off();
 	delay();
-}
-for (i=0;i<bcoutsurname;i++){//i!=x????????
+}//name led blink for end
+for (i=0;i<bcountsurname;i++){
 	turn_surname_on();
 	delay();
 	turn_surname_off();
 	delay();
-}
+}// surname led blink for end
 }

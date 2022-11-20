@@ -2330,9 +2330,9 @@ LOAD d:/stm32cubeide_1.10.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.extern
  .bss.bcountname
                 0x0000000020000020        0x4 ./Core/Src/main.o
                 0x0000000020000020                bcountname
- .bss.bcoutsurname
+ .bss.bcountsurname
                 0x0000000020000024        0x4 ./Core/Src/main.o
-                0x0000000020000024                bcoutsurname
+                0x0000000020000024                bcountsurname
  .bss.name_led  0x0000000020000028        0x4 ./Core/Src/main.o
                 0x0000000020000028                name_led
  .bss.surname_led
@@ -2436,16 +2436,16 @@ LOAD d:/stm32cubeide_1.10.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.extern
  .debug_line    0x000000000000106c       0x88 ./Core/Startup/startup_stm32f407vgtx.o
  .debug_line    0x00000000000010f4      0x94e ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
 
-.debug_str      0x0000000000000000    0xbb5a1
- .debug_str     0x0000000000000000     0x2de5 ./Core/Src/main.o
-                                       0x2e0d (size before relaxing)
- .debug_str     0x0000000000002de5    0xb7a44 ./Core/Src/stm32f4xx_it.o
+.debug_str      0x0000000000000000    0xbb5e0
+ .debug_str     0x0000000000000000     0x2e0b ./Core/Src/main.o
+                                       0x2e33 (size before relaxing)
+ .debug_str     0x0000000000002e0b    0xb7a5d ./Core/Src/stm32f4xx_it.o
                                       0xba93c (size before relaxing)
- .debug_str     0x00000000000ba829      0x1e7 ./Core/Src/system_stm32f4xx.o
+ .debug_str     0x00000000000ba868      0x1e7 ./Core/Src/system_stm32f4xx.o
                                       0xbaa66 (size before relaxing)
- .debug_str     0x00000000000baa10       0x36 ./Core/Startup/startup_stm32f407vgtx.o
+ .debug_str     0x00000000000baa4f       0x36 ./Core/Startup/startup_stm32f407vgtx.o
                                          0x4f (size before relaxing)
- .debug_str     0x00000000000baa46      0xb5b ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_str     0x00000000000baa85      0xb5b ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
                                       0xbb5ea (size before relaxing)
 
 .comment        0x0000000000000000       0x50
